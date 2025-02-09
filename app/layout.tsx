@@ -19,9 +19,15 @@ export const metadata: Metadata = {
     'web development'
   ],
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' }, // Główna favicon
+      { url: '/icons/icon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/icons/icon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icons/wolf_icon-192x192.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180' },
+    ],
   },
   openGraph: {
     title: 'Karol Malicki - Portfolio',
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Karol Malicki Portfolio',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.jpg', // Zostaw ten obraz, lub dodaj wilka też tutaj
         width: 1200,
         height: 630,
       },
@@ -37,7 +43,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     type: 'website',
   },
-  metadataBase: new URL('https://twoja-domena.pl'),
+  metadataBase: new URL('https://01daysoft.pl'),
   alternates: {
     canonical: '/',
   },

@@ -35,6 +35,12 @@ export default function Home() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
+  const xPosition = useTransform(scrollYProgress, [0, 0.5, 1], [0, 100, 0]);
+  const yPosition = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+  const latarkaX = useTransform(scrollYProgress, [0, 1], ["-100%", "100%"]);
+  const latarkaOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 0.8, 0.5, 0]);
+
   const projects = [
     {
       title: "Vocale App",
@@ -95,6 +101,22 @@ export default function Home() {
     <div ref={containerRef} className="relative min-h-screen bg-black text-white overflow-hidden">
       <ParticleBackground />
       
+      {/* Efekt latarki */}
+      <motion.div
+        className="fixed inset-0 pointer-events-none z-50"
+        style={{
+          background: `linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%
+          )`,
+          x: latarkaX,
+          opacity: latarkaOpacity,
+          mask: "linear-gradient(black, transparent 90%)"
+        }}
+      />
+
       {/* Hero Section */}
       <motion.section 
         className="relative h-screen flex items-center justify-center"
@@ -238,17 +260,17 @@ export default function Home() {
               { 
                 icon: CodeXml,
                 title: "Fullstack Development",
-                description: "Kompleksowe rozwiązania webowe z użyciem React, Next.js i Node.js"
+                description: "Comprehensive web solutions using React, Next.js and Node.js"
               },
               {
                 icon: Cloud,
                 title: "Cloud Architecture",
-                description: "Wdrożenia AWS/GCP i optymalizacja infrastruktury chmurowej"
+                description: "AWS/GCP implementations and cloud infrastructure optimization"
               },
               {
                 icon: BrainCircuit,
                 title: "AI/ML Solutions",
-                description: "Implementacja modeli machine learning i systemów AI"
+                description: "Implementation of machine learning models and AI systems"
               }
             ].map((skill, index) => (
               <div key={index} className="p-6 bg-black/50 border border-purple-500/30 rounded-lg">
@@ -257,7 +279,7 @@ export default function Home() {
                 <p className="text-gray-400">{skill.description}</p>
               </div>
             ))}
-          </div>
+          </div>    
         </div>
       </section>
 
