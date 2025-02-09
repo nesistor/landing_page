@@ -60,9 +60,9 @@ const categories: Category[] = [
     name: "Cloud",
     icon: <Cloud className="w-6 h-6" />,
     technologies: [
-      { name: "AWS", description: "Cloud infrastructure" },
+      { name: "AWS", description: "S3, EKS, RDS, CloudFront, CloudWatch" },
       { name: "GCP", description: "Google Cloud Platform" },
-      { name: "Firebase", description: "Backend as a Service" },
+      { name: "Firebase", description: "Firebase Auth, FireStorage" },
       { name: "Vercel", description: "Edge deployment" }
     ]
   },
@@ -70,10 +70,11 @@ const categories: Category[] = [
     name: "AI/ML",
     icon: <Brain className="w-6 h-6" />,
     technologies: [
-      { name: "TensorFlow", description: "Deep learning models" },
-      { name: "PyTorch", description: "Machine learning research" },
+      { name: "OpenAI", description: "AI research and deployment" },
+      { name: "Pydantic", description: "Data validation and settings management" },
       { name: "Langchain", description: "LLM applications" },
       { name: "Hugging Face", description: "Transformer models" }
+
     ]
   }
 ];

@@ -61,11 +61,20 @@ const ProjectCard = ({ title, description, detailedDescription, link, tags, imag
     >
       <motion.div
         className="relative w-full h-[400px] cursor-pointer preserve-3d transition-transform duration-700"
+        style={{ transformStyle: "preserve-3d" }}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         onMouseLeave={() => setIsFlipped(false)}
       >
         {/* Front of the card */}
-        <div className="absolute w-full h-full backface-hidden">
+        <div 
+          className="absolute w-full h-full backface-hidden bg-black/80 overflow-hidden"
+          style={{ 
+            transform: 'translateZ(2px)',
+            zIndex: isFlipped ? 0 : 1,
+            backfaceVisibility: 'hidden' as const,
+            pointerEvents: isFlipped ? 'none' : 'auto'
+          }}
+        >
           <div className="h-full rounded-lg overflow-hidden bg-black/50 border border-purple-500/30 hover:border-purple-500 transition-colors">
             <div
               className="h-1/2 bg-cover bg-center"
@@ -91,8 +100,16 @@ const ProjectCard = ({ title, description, detailedDescription, link, tags, imag
         </div>
 
         {/* Back of the card */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180">
-          <div className="h-full rounded-lg overflow-hidden bg-purple-900/20 border border-purple-500 p-6 flex flex-col justify-between">
+        <div 
+          className="absolute w-full h-full backface-hidden overflow-hidden"
+          style={{ 
+            transform: 'rotateY(180deg) translateZ(2px)',
+            zIndex: isFlipped ? 1 : 0,
+            backfaceVisibility: 'hidden' as const,
+            pointerEvents: isFlipped ? 'auto' : 'none'
+          }}
+        >
+          <div className="h-full rounded-lg overflow-hidden bg-purple-900 border border-purple-500 p-6 flex flex-col justify-between">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-purple-200">{title}</h3>
               <p className="text-gray-300 leading-relaxed">{detailedDescription}</p>
